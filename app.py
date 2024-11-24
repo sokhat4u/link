@@ -4,25 +4,11 @@ import os
 
 app = Flask(__name__)
 
-# Ensure 'host_links.txt' exists
-if not os.path.exists("host_links.txt"):
-    with open("host_links.txt", "w") as file:
-        pass  # Create an empty file
-
 # Dictionary to store host links
 host_links = {
     'example.com': 'https://example.com/link',
     'sample.com': 'https://sample.com/link'
 }
-
-# Load host links from file (if exists)
-try:
-    with open("host_links.txt", "r") as file:
-        for line in file:
-            host, link = line.strip().split(",", 1)
-            host_links[host] = link
-except FileNotFoundError:
-    pass
 
 # Function to save unknown host names
 def save_unknown_host(host_name):
@@ -34,6 +20,15 @@ def save_host_links():
     with open("host_links.txt", "w") as file:
         for host, link in host_links.items():
             file.write(f"{host},{link}\n")
+
+# Load host links from file (if exists)
+try:
+    with open("host_links.txt", "r") as file:
+        for line in file:
+            host, link = line.strip().split(",", 1)
+            host_links[host] = link
+except FileNotFoundError:
+    pass
 
 @app.route('/')
 def index():
