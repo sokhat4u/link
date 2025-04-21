@@ -13,19 +13,22 @@ HTML = """
 <!DOCTYPE html>
 <html>
 <head>
-    <title>⚠️ CYBER SCAN v2.0 ⚠️</title>
+    <title>🔥 CYBER HACK PRO MAX 🔥</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        @keyframes emergency {
-            0% { background-color: #ff0000; }
-            50% { background-color: #000000; }
-            100% { background-color: #00ff00; }
+        @keyframes glitch {
+            0% { text-shadow: 3px 3px red, -3px -3px blue; }
+            25% { transform: skew(10deg); }
+            50% { text-shadow: -5px 5px green, 5px -5px yellow; }
+            75% { transform: skew(-10deg); }
+            100% { text-shadow: none; }
         }
 
         body {
             margin: 0;
             overflow: hidden;
-            font-family: 'Arial Black', sans-serif;
+            background: #000;
+            font-family: 'Courier New', monospace;
         }
 
         #loader {
@@ -34,7 +37,7 @@ HTML = """
             left: 0;
             width: 100%;
             height: 100%;
-            background: #000;
+            background: rgba(0,0,0,0.95);
             z-index: 9999;
             display: none;
             justify-content: center;
@@ -42,97 +45,125 @@ HTML = """
             flex-direction: column;
         }
 
-        .alert-text {
-            font-size: 4vw;
-            color: #ff0000;
-            text-shadow: 0 0 10px #ff0000;
-            animation: distort 0.1s infinite;
-            margin: 20px;
-            text-align: center;
-        }
-
-        @keyframes distort {
-            0% { transform: skew(0deg, 0deg); }
-            50% { transform: skew(10deg, 5deg); }
-            100% { transform: skew(-10deg, -5deg); }
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: -1;
         }
 
         form {
             position: relative;
-            z-index: 1;
-            background: rgba(0,0,0,0.9);
-            padding: 20px;
+            z-index: 2;
+            background: rgba(0,0,0,0.8);
+            padding: 30px;
             margin: 50px auto;
             width: 80%;
-            border: 5px solid #ff0000;
+            border: 3px solid #ff0000;
+            border-radius: 10px;
         }
 
         input {
-            background: black !important;
-            color: #ff0000 !important;
+            background: #111 !important;
+            color: #0f0 !important;
             font-size: 24px !important;
             padding: 15px !important;
-            border: 3px solid #00ff00 !important;
-            margin: 20px 0 !important;
+            border: 2px solid #00f !important;
+            margin: 15px 0 !important;
             width: 100%;
         }
 
         #countdown {
             font-size: 10vw;
-            color: #00ff00;
-            text-shadow: 0 0 20px #00ff00;
+            color: #0f0;
+            text-shadow: 0 0 20px #0f0;
+        }
+
+        #result {
+            display: none;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        #copy-btn {
+            background: #0f0;
+            color: #000;
+            border: none;
+            padding: 12px 24px;
+            font-size: 20px;
+            cursor: pointer;
+            margin: 15px;
+            display: none;
         }
     </style>
 </head>
 <body>
+    <canvas id="matrix-canvas"></canvas>
+    
     <div id="loader">
-        <div class="alert-text">⚠️ SYSTEM BREACH DETECTED ⚠️</div>
-        <div id="countdown"></div>
+        <div id="countdown">10</div>
+        <div style="color:#0f0; font-size:24px;">HACKING DATA...</div>
     </div>
 
-    <form method="POST" onsubmit="return startScan(event)">
-        <input type="text" name="host" placeholder="ENTER TARGET HOST" required>
-        <input type="submit" value="INITIATE SCAN">
+    <form onsubmit="startHacking(event)">
+        <input type="text" name="host" placeholder="🌐 ENTER TARGET HOST" required>
+        <input type="submit" value="🚀 LAUNCH CYBER NUKES" style="background:#f00; color:#000; cursor:pointer;">
     </form>
 
-    <div id="result" style="display:none; text-align:center; color:#00ff00;">
-        <textarea id="result-link" style="width:80%; height:100px; background:black; color:#00ff00; border:3px solid red;"></textarea>
-        <p>⚠️ MANUAL RID/CID REQUIRED ⚠️</p>
+    <div id="result">
+        <textarea id="result-link" readonly></textarea>
+        <button id="copy-btn" onclick="copyToClipboard()">📋 COPY LINK</button>
     </div>
 
     <script>
-        const messages = [
-            "DECRYPTING MAINFRAME...",
-            "BYPASSING FIREWALL...",
-            "ACCESSING NSA DATABASE...",
-            "CRACKING ENCRYPTION...",
-            "ROOT PRIVILEGES GRANTED"
-        ];
+        // Matrix Rain
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()';
+        const drops = new Array(Math.floor(canvas.width/10)).fill(1);
 
-        async function startScan(e) {
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = '#0f0';
+            ctx.font = '18px monospace';
+
+            drops.forEach((drop, i) => {
+                const char = chars[Math.floor(Math.random()*chars.length)];
+                ctx.fillText(char, i*20, drop*20);
+                drops[i] = drop > canvas.height/20 ? 0 : drop+1;
+            });
+        }
+        setInterval(drawMatrix, 50);
+
+        // Hacking System
+        async function startHacking(e) {
             e.preventDefault();
             const loader = document.getElementById('loader');
             loader.style.display = 'flex';
-            document.body.style.animation = 'emergency 0.5s infinite';
-
+            
             let seconds = 10;
             const countdown = document.getElementById('countdown');
-
+            
+            // Crazy Effects
             const interval = setInterval(() => {
-                countdown.innerHTML = `${seconds}s<br>${messages[Math.floor(Math.random()*messages.length)]}`;
+                countdown.textContent = `${seconds}s`;
                 seconds--;
                 
-                // Random screen shake
+                // Screen Shaking
                 document.body.style.transform = 
                     `translate(${Math.random()*20-10}px, ${Math.random()*20-10}px)`;
                 
-                // Random alerts
-                if(Math.random() > 0.7) {
-                    alert(`WARNING: ${messages[Math.floor(Math.random()*messages.length)]}`);
-                }
+                // Random Color Flash
+                document.body.style.backgroundColor = 
+                    `rgb(${Math.random()*255},${Math.random()*255},${Math.random()*255})`;
             }, 1000);
 
-            // Submit after 10 seconds
+            // Submit After 10s
             setTimeout(async () => {
                 const formData = new FormData(e.target);
                 try {
@@ -142,22 +173,29 @@ HTML = """
                     });
                     const data = await response.json();
 
-                    if(data.error) {
-                        alert(`ERROR: ${data.error}`);
-                    } else if(data.result) {
+                    if(data.result) {
                         document.getElementById('result').style.display = 'block';
                         document.getElementById('result-link').value = data.result;
+                        document.getElementById('copy-btn').style.display = 'block';
+                    } else {
+                        alert('❌ HOST NOT FOUND IN DARK WEB!');
                     }
-                } catch (error) {
-                    alert('NETWORK FAILURE! TRY AGAIN');
+                } catch(error) {
+                    alert('🌐 NETWORK FAILURE!');
                 }
 
-                // Cleanup
                 clearInterval(interval);
                 loader.style.display = 'none';
-                document.body.style.animation = '';
                 document.body.style.transform = '';
+                document.body.style.backgroundColor = '#000';
             }, 10000);
+        }
+
+        // Copy Function
+        function copyToClipboard() {
+            navigator.clipboard.writeText(document.getElementById('result-link').value)
+                .then(() => alert('✅ Copied to clipboard!'))
+                .catch(() => alert('❌ Failed to copy!'));
         }
     </script>
 </body>
@@ -165,13 +203,10 @@ HTML = """
 """
 
 @app.route("/", methods=["GET", "POST"])
-def index():
+def main():
     if request.method == "POST":
         host = request.form.get("host", "").strip().lower()
-        result = survey_links.get(host)
-        if result:
-            return jsonify(result=result)
-        return jsonify(error="Host not found"), 404
+        return jsonify(result=survey_links.get(host)) if host in survey_links else jsonify(error=True)
     return render_template_string(HTML)
 
 if __name__ == "__main__":
