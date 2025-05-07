@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 survey_links = {
     "https://us1se.voxco.com": "https://notch.insights.supply/cb?token=d9af61cb-78d3-401d-93c1-d2ce388a8cd4&RID=681b21a4-62bd-cf88-4e5c-a4be0a78e74a",
-    "survey.qualtrics.com": "https://s.cint.com/Survey/Complete?ProjectToken=82935c18-f510-4057-9db3-b2e4dbeb2c94&cid=",
+    "https://welcome.walr.com": "https://notch.insights.supply/cb?token=288a1257-09e2-43e3-8765-e0c35d1affad&RID=681b2a16-fa5c-0004-74dd-0fc83e4d28b3&platform=3&recid=64066867",
     "as-c1-web01.opinion.life": "https://stop.opinion.life/finished/10/fingerprint/4D62E3F6-201C-4D88-8D3B-1B5DB643F8AC/C1/17238/?startUtc=",
 }
 
