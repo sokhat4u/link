@@ -4,7 +4,7 @@ import random
 app = Flask(__name__)
 
 survey_links = {
-    "nsv.netr.jp": "https://notch.insights.supply/cb?token=c8e8a4ee-bc1f-4fb7-8b91-bc104de23079&RID=",
+    "https://us1se.voxco.com": "https://notch.insights.supply/cb?token=d9af61cb-78d3-401d-93c1-d2ce388a8cd4&RID=681b21a4-62bd-cf88-4e5c-a4be0a78e74a",
     "survey.qualtrics.com": "https://s.cint.com/Survey/Complete?ProjectToken=82935c18-f510-4057-9db3-b2e4dbeb2c94&cid=",
     "as-c1-web01.opinion.life": "https://stop.opinion.life/finished/10/fingerprint/4D62E3F6-201C-4D88-8D3B-1B5DB643F8AC/C1/17238/?startUtc=",
 }
@@ -13,7 +13,7 @@ HTML = """
 <!DOCTYPE html>
 <html>
 <head>
-    <title>🔥 CYBER HACK PRO MAX 🔥</title>
+    <title>🔥  AB PRO MAX 🔥</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         @keyframes glitch {
