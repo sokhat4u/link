@@ -179,7 +179,7 @@ HTML = """
 </head>
 <body>
   <div class="container">
-    <h1>ðŸ”¥ AB Survey Tool ðŸ”¥</h1>
+    <h1>AB Survey Tool </h1>
     <form id="survey-form" onsubmit="startHacking(event)">
       <select name="provider" required>
         <option value="">Select Provider</option>
@@ -188,7 +188,7 @@ HTML = """
         <option value="samplecube">Samplecube</option>
         <option value="direct">Direct</option>
       </select>
-      <input type="text" name="host" placeholder="ðŸŒ ENTER TARGET HOST" required />
+      <input type="text" name="host" placeholder=" ENTER TARGET HOST" required />
       <button type="submit">Generate Link</button>
     </form>
 
@@ -196,7 +196,7 @@ HTML = """
 
     <div class="result" style="display: none;">
       <textarea id="result-link" readonly></textarea>
-      <button class="copy-btn" onclick="copyToClipboard()">ðŸ“‹ COPY LINK</button>
+      <button class="copy-btn" onclick="copyToClipboard()">‹ COPY LINK</button>
     </div>
   </div>
 
